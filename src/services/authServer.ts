@@ -2,10 +2,11 @@ import jwt, { Algorithm, SignOptions } from "jsonwebtoken";
 import { ALREADY_REGISTERED, UNAUTHORIZED } from "../events/ErrosList.js";
 import * as userRepository from "../repositories/userRepository.js";
 import { CreateUserData } from "../repositories/userRepository.js";
+import { RegisterSchema } from "../schemas/authSchema.js";
 import { Bcrypt } from "../utils/encrypt.js";
 import { env } from "../utils/env.js";
 
-async function register(registerData: CreateUserData) {
+async function register(registerData: RegisterSchema) {
   const { email, password } = registerData;
   const user = await userRepository.findByEmail(email);
   if (user) {
