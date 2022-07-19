@@ -4,8 +4,8 @@ export const ACCESS_DANIED = (entityName: string) => {
   return new AppError(`${entityName} access danied`, 401, "make sure this document is yours")
 };
 
-export const EMAIL_ALREADY_EXISTS = new AppError(
-  "Sign-up conflict",
+export const ALREADY_REGISTERED = new AppError(
+  "Already registered",
   409,
   "Email already registered",
   "login or register another email"
@@ -39,9 +39,9 @@ export const NOT_FOUND = (details: string | undefined) => {
   return new AppError("Not found", 404, "Not found", details);
 };
 
-export const SIGN_IN_UNAUTHORIZED = new AppError(
+export const UNAUTHORIZED = new AppError(
   "Sign-in unauthorized",
   401,
-  "Email or password are incorrect",
-  "Check and try again"
+  "Unauthorized",
+  "Email or password are incorrect"
 );
