@@ -9,7 +9,7 @@ export async function register(req: Request, res: Response) {
 
 export async function login(req: Request, res: Response) {
   const loginData = req.body;
-  const token = authServer.login(loginData);
+  const token = await authServer.login(loginData);
 
   res.status(200).send({ token });
 }
