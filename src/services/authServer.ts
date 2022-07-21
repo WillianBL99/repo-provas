@@ -1,5 +1,8 @@
 import jwt, { Algorithm, SignOptions } from "jsonwebtoken";
-import { ALREADY_REGISTERED, UNAUTHORIZED } from "../events/ErrosList.js";
+import {
+  ALREADY_REGISTERED,
+  PASSWORD_OR_EMAIL_INCORRECT,
+} from "../events/ErrosList.js";
 import * as userRepository from "../repositories/userRepository.js";
 import { CreateUserData } from "../repositories/userRepository.js";
 import { RegisterSchema } from "../schemas/authSchema.js";
@@ -29,12 +32,12 @@ async function getUserOrFail(loginData: CreateUserData) {
 
   const user = await userRepository.findByEmail(email);
   if (!user) {
-    throw UNAUTHORIZED;
+    throw PASSWORD_OR_EMAIL_INCORRECT;
   }
 
   const descriptPass = Bcrypt.compareSync(password, user.password);
   if (!descriptPass) {
-    throw UNAUTHORIZED;
+    throw PASSWORD_OR_EMAIL_INCORRECT;
   }
 
   return user;
