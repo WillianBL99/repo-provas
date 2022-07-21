@@ -9,7 +9,7 @@
     "ts:start": "ts-node src/server.ts",
     "build": "tsc",
     "dev": "nodemon src/server.ts",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+    "test": "dotenv -e .env.test prisma migrate dev && NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -i"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
@@ -28,9 +28,10 @@
   "dependencies": {
     "@prisma/client": "^4.0.0",
     "bcrypt": "^5.0.1",
-    "cors": "^2.8.5",
     "chalk": "^4.1.2",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.1",
+    "dotenv-cli": "^6.0.0",
     "express": "^4.18.1",
     "express-async-errors": "^3.1.1",
     "helmet": "^5.1.0",
@@ -40,6 +41,7 @@
     "pg": "^8.7.3"
   },
   "devDependencies": {
+    "@faker-js/faker": "^7.3.0",
     "@types/axios": "^0.14.0",
     "@types/bcrypt": "^5.0.0",
     "@types/cors": "^2.8.12",
