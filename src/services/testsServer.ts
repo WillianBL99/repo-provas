@@ -12,7 +12,7 @@ export type RealtionData = {
 };
 
 export type GroupBy = {
-  groupBy: "teachers" | "disciplinies";
+  groupBy: "teachers" | "disciplines";
 };
 
 async function create(testData: TestSchema) {
@@ -43,7 +43,7 @@ async function create(testData: TestSchema) {
 
 const groupTestsBy = {
   teachers: testsRepository.findGroupByTeacher(),
-  disciplinies: testsRepository.findGroupByDisciplinies(),
+  disciplines: testsRepository.findGroupByDisciplinies(),
 };
 
 async function getTests({ groupBy }: GroupBy) {

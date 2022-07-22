@@ -5,7 +5,7 @@ import { testSchema } from "../schemas/testsSchema.js";
 
 const testRoute = Router();
 
-testRoute.post("/test", validateSchema(testSchema), createTest);
-testRoute.get("/test", getTests);
+testRoute.post("/tests", validateSchema(testSchema), createTest);
+testRoute.get("/tests", getTests);
 
 export default testRoute;
