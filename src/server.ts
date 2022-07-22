@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-
-import AppLog from "./events/AppLog.js";
 import app from "./app.js";
 import "./config/setup.js";
+import AppLog from "./events/AppLog.js";
+
 
 const PORT = process.env.PORT || 5000;
 

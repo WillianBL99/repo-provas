@@ -8,6 +8,10 @@ export async function tokenValidation(
   res: Response,
   next: NextFunction
 ) {
+  const { path } = req;
+  if (path === "/favicon.ico") {
+    next();
+  }
   const authorization = req.header("Authorization") ?? "";
   const token = parseToken(authorization);
   let userId = null;
@@ -16,10 +20,9 @@ export async function tokenValidation(
     const { id } = jwt.verify(token, env.JWT_SECRET) as JwtPayload;
     userId = id;
   } catch (error: any) {
-    console.log(error);
-    throw INVALID_TOKEN;
+    throw INVALID_TOKEN(error.message);
   }
-  
+
   res.locals.userId = userId;
   next();
 }

@@ -10,3 +10,73 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  password String
+
+  @@map("users")
+}
+
+model Category {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  Test Test[]
+
+  @@map("categories")
+}
+
+model Test {
+  id                  Int              @id @default(autoincrement())
+  name                String
+  pdfUrl              String
+  categoryId          Int
+  teacherDisciplineId Int
+  teacherDiscipline   TeacherDicipline @relation(fields: [teacherDisciplineId], references: [id])
+
+  category Category @relation(fields: [categoryId], references: [id])
+
+  @@map("tests")
+}
+
+model Teacher {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  TeacherDicipline TeacherDicipline[]
+
+  @@map("teachers")
+}
+
+model Term {
+  id     Int @id @default(autoincrement())
+  number Int @unique
+
+  Discipline Discipline[]
+
+  @@map("terms")
+}
+
+model Discipline {
+  id     Int    @id @default(autoincrement())
+  name   String @unique
+  termId Int
+
+  term Term @relation(fields: [termId], references: [id])
+
+  TeacherDicipline TeacherDicipline[]
+
+  @@map("disciplines")
+}
+
+model TeacherDicipline {
+  id           Int        @id @default(autoincrement())
+  teacher      Teacher    @relation(fields: [teacherId], references: [id])
+  teacherId    Int
+  discipline   Discipline @relation(fields: [disciplineId], references: [id])
+  disciplineId Int
+  Test         Test[]
+
+  @@map("teachers_disciplinies")
+}

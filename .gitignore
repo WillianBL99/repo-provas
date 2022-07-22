@@ -27,6 +27,11 @@ coverage
 .nyc_output
 **test.ts
 
+# test jest
+**test/
+jest.config.ts
+jest.config.js
+
 # Grunt intermediate storage (https://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
 
@@ -76,6 +81,7 @@ web_modules/
 # dotenv environment variable files
 .env
 .env.development.local
+.env.test
 .env.test.local
 .env.production.local
 .env.local
@@ -135,4 +141,4 @@ dist
 /.ts
 
 # Prisma
-#/prisma/migrations
+**prisma/
