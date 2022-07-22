@@ -5,7 +5,7 @@
     "lib": ["ESNext"],
     "module": "es6",
     "outDir": "dist",
-    "rootDir": "./src",
+    "rootDir": "",
     "allowUmdGlobalAccess": true,
 
     /* Strict Type-Checking Options */
@@ -29,5 +29,6 @@
   "ts-node": {
     "esm": true
   },
-  "exclude": ["node_modules", "test", "types", "**/*.test.ts", "**/*"]
+  "include": ["src/**/*","test/**/*"],
+  "exclude": ["node_modules"],
 }
