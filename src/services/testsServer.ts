@@ -6,46 +6,88 @@ import * as testsRepository from "../repositories/testsRepository.js";
 import { TestSchema } from "../schemas/testsSchema.js";
 import * as errosList from "../events/ErrosList.js";
 
+export type RealtionData = {
+  disciplineId: number;
+  teacherId: number;
+};
+
+export type GroupBy = {
+  groupBy: "teachers" | "disciplinies";
+};
+
 async function create(testData: TestSchema) {
-  const { category, discipline, teacherName } = testData;
-  const findTeacher = await teachersRepository.findByName(teacherName);
-  if (!findTeacher) {
-    throw errosList.NOT_FOUND("Teacher not found");
-  }
+  const {
+    category: categoryName,
+    discipline: disciplineName,
+    teacherName,
+  } = testData;
 
-  const findCategory = await categoryRepository.findByName(category);
-  if (!findCategory) {
-    throw errosList.NOT_FOUND("Category not found");
-  }
-
-  const findDiscipline = await disciplineRepository.findByName(discipline);
-  if (!findDiscipline) {
-    throw errosList.NOT_FOUND("Discipline not found");
-  }
+  const teacher = await findTeacher(teacherName);
+  const category = await findCategory(categoryName);
+  const discipline = await findDiscipline(disciplineName);
 
   const relationData = {
-    disciplineId: findDiscipline.id,
-    teacherId: findTeacher.id,
+    disciplineId: discipline.id,
+    teacherId: teacher.id,
   };
 
-  let relationshipTeachDiscipline =
-    await teachersRepository.findRelationshipTeachDiscipline(relationData);
-
-  if (!relationshipTeachDiscipline) {
-    relationshipTeachDiscipline =
-      await teachersRepository.createRelationshipTeachDiscipline(relationData);
-  }
+  const relation = await findOrCreateRealationship(relationData);
 
   await testsRepository.create({
     name: testData.name,
     pdfUrl: testData.pdfUrl,
-    categoryId: findCategory.id,
-    teacherDisciplineId: relationshipTeachDiscipline.id,
+    categoryId: category.id,
+    teacherDisciplineId: relation.id,
   });
+}
+
+const groupTestsBy = {
+  teachers: testsRepository.findGroupByTeacher(),
+  disciplinies: testsRepository.findGroupByDisciplinies(),
+};
+
+async function getTests({ groupBy }: GroupBy) {
+  return await groupTestsBy[groupBy];
+}
+
+async function findTeacher(name: string) {
+  const teacher = await teachersRepository.findByName(name);
+  if (!teacher) {
+    throw errosList.NOT_FOUND("Teacher not found");
+  }
+  return teacher;
+}
+
+async function findCategory(name: string) {
+  const category = await categoryRepository.findByName(name);
+  if (!category) {
+    throw errosList.NOT_FOUND("Category not found");
+  }
+  return category;
+}
+
+async function findDiscipline(name: string) {
+  const discipline = await disciplineRepository.findByName(name);
+  if (!discipline) {
+    throw errosList.NOT_FOUND("Discipline not found");
+  }
+  return discipline;
+}
+
+async function findOrCreateRealationship(relationData: RealtionData) {
+  const relation = await teachersRepository.findRelationshipTeachDiscipline(
+    relationData
+  );
+
+  return (
+    relation ||
+    (await teachersRepository.createRelationshipTeachDiscipline(relationData))
+  );
 }
 
 const testService = {
   create,
+  getTests,
 };
 
 export default testService;
