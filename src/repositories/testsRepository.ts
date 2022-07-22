@@ -10,16 +10,16 @@ export async function findGroupByDisciplinies() {
   return await prisma.term.findMany({
     orderBy: { number: "asc" },
     include: {
-      Discipline: {
+      disciplines: {
         include: {
-          TeacherDicipline: {
+          teacherDisciplines: {
             include: {
-              Test: {
+              tests: {
                 include: {
-                  category: {},
+                  category: true,
                 },
               },
-              teacher: {},
+              teacher: true,
             },
           },
         },
@@ -32,21 +32,21 @@ export async function findGroupByTeacher() {
   return await prisma.teacherDicipline.findMany({
     orderBy: { id: "desc" },
     select: {
-      Test: {
+      tests: {
         include: {
-          category: {},
+          category: true,
         },
       },
       discipline: {
         include: {
-          TeacherDicipline: {
+          teacherDisciplines: {
             include: {
-              Test: {},
+              tests: true,
             },
           },
         },
       },
-      teacher: {},
+      teacher: true,
     },
   });
 }
