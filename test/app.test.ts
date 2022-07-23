@@ -1,5 +1,6 @@
 import userFactory from "./factories/user.factory.js";
 import testFactory from "./factories/test.factory.js";
+import categoriestFactory from "./factories/categories.factory.js";
 
 beforeEach(async () => {
   await userFactory.deleteUsers();
@@ -21,7 +22,7 @@ describe("Register test suite", () => {
     expect(user?.email).toEqual(register.email);
   });
 
-  it("create the the user already registered", async () => {
+  it("create the user already registered", async () => {
     const register = userFactory.createUserRegister();
     await userFactory.registerUser(register);
     const response = await userFactory.registerUser(register);
@@ -95,7 +96,7 @@ describe("Create test suite", () => {
     expect(currentCount).toEqual(oldCount);
   });
 
-  it("given non-existent discipline, return not found", async () => {
+  it("given non-existent teacher, return not found", async () => {
     const token = await userFactory.completLogin();
 
     const testData = testFactory.createTestData({ teacherName: "adfjakk" });
@@ -114,6 +115,22 @@ describe("Create test suite", () => {
     const response = await testFactory.postTestWhitIncorrectBody(token);
 
     expect(response.statusCode).toEqual(422);
+    const currentCount = await testFactory.countTests();
+    expect(currentCount).toEqual(oldCount);
+  });
+
+  it("given non-existent teacher in a discipline, return business rule broke", async () => {
+    const token = await userFactory.completLogin();
+
+    const testData = await testFactory.createTestData({
+      category: "Projeto",
+      discipline: "HTML e CSS",
+      teacherName: "Paulo Uilian",
+    });
+    const oldCount = await testFactory.countTests();
+    const response = await testFactory.postTest(testData, token);
+
+    expect(response.statusCode).toEqual(403);
     const currentCount = await testFactory.countTests();
     expect(currentCount).toEqual(oldCount);
   });
@@ -150,5 +167,16 @@ describe("Get tests suite", () => {
     const response = await testFactory.getTestsGroupBy("jklkj", token);
     expect(response.statusCode).toBe(422);
     expect(response.body.tests).toBeUndefined();
+  });
+});
+
+describe("Categories suite", () => {
+  it("Get categories", async () => {
+    const token = await userFactory.completLogin();
+    const response = await categoriestFactory.getCategories(token);
+
+    expect(response.statusCode).toEqual(200);
+    expect(response.body?.categories).toBeDefined();
+    expect(response.body?.categories).not.toBeNull();
   });
 });

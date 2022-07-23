@@ -22,6 +22,10 @@ export const BAD_QUERY_REQUEST = new AppError(
   "Check the url"
 );
 
+export const BUSINESS_RULE_BROKE = (detail?: any) => {
+  return new AppError("Busines rule broke", 403, "Busines rule broke", detail);
+};
+
 export const DUPLICATE_LABLE = new AppError(
   "Duplicate lable",
   409,
@@ -43,8 +47,8 @@ export const INVALID_ID = new AppError(
   "make sure to send a valid id"
 );
 
-export const INVALID_TOKEN = (error?: any) => {
-  return new AppError("Invalid token", 403, "Invalid token", error);
+export const INVALID_TOKEN = (detail?: any) => {
+  return new AppError("Invalid token", 403, "Invalid token", detail);
 };
 
 export const NOT_FOUND = (details?: string) => {

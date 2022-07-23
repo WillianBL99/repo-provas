@@ -79,10 +79,11 @@ async function findOrCreateRealationship(relationData: RealtionData) {
     relationData
   );
 
-  return (
-    relation ||
-    (await teachersRepository.createRelationshipTeachDiscipline(relationData))
-  );
+  if (!relation) {
+    throw errosList.BUSINESS_RULE_BROKE("Teacher not found in this discipline");
+  }
+
+  return relation;
 }
 
 const testService = {
