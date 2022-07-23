@@ -99,7 +99,7 @@ async function teachersDisciplines() {
   console.log("insert teachersDisciplines");
   const names = [
     { teacherId: 1, disciplineId: 1 },
-    { teacherId: 1, disciplineId: 2 },
+    { teacherId: 3, disciplineId: 2 },
     { teacherId: 1, disciplineId: 3 },
     { teacherId: 2, disciplineId: 4 },
     { teacherId: 2, disciplineId: 5 },
