@@ -15,6 +15,13 @@ export const ALREADY_REGISTERED = new AppError(
   "login or register another email"
 );
 
+export const BAD_QUERY_REQUEST = new AppError(
+  "Bad query request",
+  422,
+  "Bad query request",
+  "Check the url"
+);
+
 export const DUPLICATE_LABLE = new AppError(
   "Duplicate lable",
   409,
