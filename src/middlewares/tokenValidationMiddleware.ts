@@ -9,7 +9,7 @@ export async function tokenValidation(
   next: NextFunction
 ) {
   const { path } = req;
-  if (path === "/favicon.ico") {
+  if (path === "/favicon.ico" || path === "/") {
     next();
   }
   const authorization = req.header("Authorization") ?? "";
