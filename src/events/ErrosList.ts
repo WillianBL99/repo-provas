@@ -51,6 +51,13 @@ export const NOT_FOUND = (details?: string) => {
   return new AppError("Not found", 404, "Not found", details);
 };
 
+export const PASSWORD_OR_EMAIL_INCORRECT = new AppError(
+  "Sign-in refused",
+  401,
+  "Refused",
+  "Password or email are incorrect"
+);
+
 export const UNAUTHORIZED = new AppError(
   "Sign-in unauthorized",
   401,
