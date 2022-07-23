@@ -1,7 +1,7 @@
 import bcrypt, { compareSync } from "bcrypt";
 import "../config/setup.js";
 
-export const internalBcrypt = {
+export const Bcrypt = {
   hashValue,
   compareSync,
 };

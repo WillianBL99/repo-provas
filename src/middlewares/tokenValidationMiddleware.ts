@@ -20,8 +20,7 @@ export async function tokenValidation(
     const { id } = jwt.verify(token, env.JWT_SECRET) as JwtPayload;
     userId = id;
   } catch (error: any) {
-    console.log(error);
-    throw INVALID_TOKEN;
+    throw INVALID_TOKEN(error.message);
   }
 
   res.locals.userId = userId;

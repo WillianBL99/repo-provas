@@ -3,14 +3,14 @@ import AppLog from "../events/AppLog.js";
 import "./setup.js";
 
 const { PrismaClient } = pkg;
-const client = new PrismaClient();
+const prisma = new PrismaClient();
 
 exec();
-export default client;
+export { prisma };
 
 async function exec() {
   try {
-    await client.$connect();
+    await prisma.$connect();
     AppLog("Server", "Connected to database");
   } catch (error) {
     AppLog("Error", `Internal error while connecting to database | ${error}`);
