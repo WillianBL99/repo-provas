@@ -42,12 +42,13 @@ async function create(testData: TestSchema) {
 }
 
 const groupTestsBy = {
-  teachers: testsRepository.findGroupByTeacher(),
-  disciplines: testsRepository.findGroupByDisciplinies(),
+  teachers: async () => await testsRepository.findGroupByTeacher(),
+  disciplines: async () => await testsRepository.findGroupByDisciplinies(),
 };
 
 async function getTests({ groupBy }: GroupBy) {
-  return await groupTestsBy[groupBy];
+  const functionGetTest = groupTestsBy[groupBy];
+  return await functionGetTest();
 }
 
 async function findTeacher(name: string) {
