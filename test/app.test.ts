@@ -122,7 +122,7 @@ describe("Create test suite", () => {
   it("given non-existent teacher in a discipline, return business rule broke", async () => {
     const token = await userFactory.completLogin();
 
-    const testData = await testFactory.createTestData({
+    const testData = testFactory.createTestData({
       category: "Projeto",
       discipline: "HTML e CSS",
       teacherName: "Paulo Uilian",
