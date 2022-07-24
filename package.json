@@ -1,7 +1,7 @@
 {
-  "name": "typescript-api-tamplate",
+  "name": "repo-provas",
   "version": "1.0.0",
-  "description": "",
+  "description": "RepoProvas is an API developed in node.js, using TypeScript. It is intended to manage exams that are given in an academic environment.",
   "main": "dist/src/server.js",
   "type": "module",
   "scripts": {
@@ -15,15 +15,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/WillianBL99/typescript-api-tamplate.git"
+    "url": "git+https://github.com/WillianBL99/repo-provas.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/WillianBL99/typescript-api-tamplate/issues"
+    "url": "https://github.com/WillianBL99/repo-provas/issues"
   },
-  "homepage": "https://github.com/WillianBL99/typescript-api-tamplate#readme",
+  "homepage": "https://github.com/WillianBL99/repo-provas#readme",
   "dependencies": {
     "@prisma/client": "^4.0.0",
     "bcrypt": "^5.0.1",
