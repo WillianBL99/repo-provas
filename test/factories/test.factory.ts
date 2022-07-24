@@ -23,7 +23,7 @@ function createTestData({ category, discipline, teacherName }: FakerTestData) {
     pdfUrl: faker.internet.url(),
     category: category || "Projeto",
     discipline: discipline || "JavaScript",
-    teacherName: teacherName || "Bruna Hamori",
+    teacherName: teacherName || "Paulo Uilian",
   };
 }
 
