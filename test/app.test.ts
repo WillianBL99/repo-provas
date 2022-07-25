@@ -1,6 +1,7 @@
 import userFactory from "./factories/user.factory.js";
 import testFactory from "./factories/test.factory.js";
 import categoriestFactory from "./factories/categories.factory.js";
+import disciplinesFactory from "./factories/disciplines.factory.js";
 
 beforeEach(async () => {
   await userFactory.deleteUsers();
@@ -178,5 +179,41 @@ describe("Categories suite", () => {
     expect(response.statusCode).toEqual(200);
     expect(response.body?.categories).toBeDefined();
     expect(response.body?.categories).not.toBeNull();
+  });
+});
+
+describe("Disciplines suite", () => {
+  it("Get disciplines by category name, ?categoryName=Projeto", async () => {
+    const token = await userFactory.completLogin();
+    const response = await disciplinesFactory.getDisciplinesByCategoryName(
+      token,
+      "Projeto"
+    );
+
+    expect(response.statusCode).toEqual(200);
+    expect(response.body?.disciplines).toBeDefined();
+    expect(response.body?.disciplines).not.toBeNull();
+  });
+
+  it("Get disciplines by null category name, ?categoryName=", async () => {
+    const token = await userFactory.completLogin();
+    const response = await disciplinesFactory.getDisciplinesByCategoryName(
+      token,
+      ""
+    );
+
+    expect(response.statusCode).toEqual(422);
+    expect(response.body?.disciplines).toBeUndefined();
+  });
+
+  it("Get disciplines by wrong category name, ?categoryName=CategoriaErrada", async () => {
+    const token = await userFactory.completLogin();
+    const response = await disciplinesFactory.getDisciplinesByCategoryName(
+      token,
+      "CategoriaErrada"
+    );
+
+    expect(response.statusCode).toEqual(404);
+    expect(response.body?.disciplines).toBeUndefined();
   });
 });
