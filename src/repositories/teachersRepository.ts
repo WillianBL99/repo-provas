@@ -13,6 +13,20 @@ export async function findByName(name: string) {
   return await prisma.teacher.findUnique({ where: { name } });
 }
 
+export async function findAllByDiscipline(discipline: string) {
+  return await prisma.teacher.findMany({
+    where: {
+      teacherDisciplines: {
+        some: {
+          discipline: {
+            name: discipline,
+          },
+        },
+      },
+    },
+  });
+}
+
 export async function findRelationshipTeachDiscipline(
   relationData: RelationData
 ) {
