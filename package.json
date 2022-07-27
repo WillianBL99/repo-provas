@@ -7,7 +7,7 @@
   "scripts": {
     "start": "NODE_ENV=production NODE_TLS_REJECT_UNAUTHORIZED=0 node dist/src/server.js",
     "build": "NODE_ENV=production npx tsc --outDir dist && prisma migrate deploy && ts-node prisma/seed.ts",
-    "dev": "NODE_ENV=development npx nodemon --watch \"src/**\" --ext \"ts,json\" --exec \"ts-node src/server.ts\"",
+    "dev": "NODE_ENV=development npx nodemon --watch \"src/**\" --ext \"ts,json\" --exec \"ts-node src/server.ts",
     "test": "NODE_ENV=test && dotenv -e .env.test prisma migrate dev && NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -- -i"
   },
   "prisma": {
