@@ -7,14 +7,17 @@
   "scripts": {
     "prepare": "husky install",
     "prisma:migrate": "prisma migrate deploy",
+    "prisma:seed": "npx prisma db seed",
     "test:load-envs": "dotenv -e .env.test",
     "test:jest": "NODE_OPTIONS=--experimental-vm-modules jest --passWithNoTests --runInBand --forceExit --silent",
     "test": "npm run test:load-envs npm run prisma:migrate && npm run test:jest",
     "dev:load-envs": "dotenv -e .env.development",
+    "dev:prisma:migrate": "npm run dev:load-envs npm run prisma:migrate",
+    "dev:prisma:seed": "npm run dev:load-envs npm run prisma:seed",
+    "dev": "NODE_ENV=development nodemon --watch \"src/**\" --ext \"ts,json\" --exec \"ts-node src/server.ts\"",
     "prod:load-envs": "dotenv -e .env.production",
     "start": "npm run prod:load-envs NODE_TLS_REJECT_UNAUTHORIZED=0 node dist/src/server.js",
-    "build": "npm run prod:load-envs npx tsc --outDir dist && prisma migrate deploy && ts-node prisma/seed.ts",
-    "dev": "NODE_ENV=development nodemon --watch \"src/**\" --ext \"ts,json\" --exec \"ts-node src/server.ts\""
+    "build": "npm run prod:load-envs npx tsc --outDir dist && prisma migrate deploy && ts-node prisma/seed.ts"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
