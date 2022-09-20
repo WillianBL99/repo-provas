@@ -1,10 +1,10 @@
 <p align="center">
-  <a href="https://https://github.com/WillianBL99/valex-api">
-    <img src="https://user-images.githubusercontent.com/65803142/178611095-2f5e8fbd-a23a-4ac8-8591-fffdf221f6e9.png" alt="readme-logo" width="180" >
+  <a href="https://https://github.com/WillianBL99/repo-provas">
+    <img src="https://icon-library.com/images/android-file-icon/android-file-icon-4.jpg" alt="readme-logo" width="180" >
   </a>
 
   <h3 align="center">
-    Tamplate
+    RepoProvas
   </h3>
 </p>
 
