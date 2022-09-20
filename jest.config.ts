@@ -8,7 +8,7 @@ export default {
       useESM: true,
     },
   },
-  verbose: true,
+  verbose: false,
   moduleNameMapper: {
     "^(\\.{1,2}/.*)\\.js$": "$1",
     "#(.*)": "<rootDir>/node_modules/$1",
