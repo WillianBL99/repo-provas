@@ -1,8 +1,15 @@
+import { init } from "../../src/app.js";
+import { disconnectDb } from "../../src/config/database.js";
 import userFactory from "../factories/user.factory.js";
 import { cleanDb } from "../helpers.js";
 
 beforeEach(async () => {
+  await init();
   await cleanDb();
+});
+
+afterAll(async () => {
+  await disconnectDb();
 });
 
 describe("Register test suite", () => {

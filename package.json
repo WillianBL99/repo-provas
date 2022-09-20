@@ -6,10 +6,15 @@
   "type": "module",
   "scripts": {
     "prepare": "husky install",
-    "start": "NODE_ENV=production NODE_TLS_REJECT_UNAUTHORIZED=0 node dist/src/server.js",
-    "build": "NODE_ENV=production npx tsc --outDir dist && prisma migrate deploy && ts-node prisma/seed.ts",
-    "dev": "NODE_ENV=development npx nodemon --watch \"src/**\" --ext \"ts,json\" --exec \"ts-node src/server.ts\"",
-    "test": "NODE_ENV=test && dotenv -e .env.test prisma migrate dev && NODE_OPTIONS=--experimental-vm-modules jest --passWithNoTests --runInBand --forceExit --silent"
+    "prisma:migrate": "prisma migrate deploy",
+    "test:load-envs": "dotenv -e .env.test",
+    "test:jest": "NODE_OPTIONS=--experimental-vm-modules jest --passWithNoTests --runInBand --forceExit --silent",
+    "test": "npm run test:load-envs npm run prisma:migrate && npm run test:jest",
+    "dev:load-envs": "dotenv -e .env.development",
+    "prod:load-envs": "dotenv -e .env.production",
+    "start": "npm run prod:load-envs NODE_TLS_REJECT_UNAUTHORIZED=0 node dist/src/server.js",
+    "build": "npm run prod:load-envs npx tsc --outDir dist && prisma migrate deploy && ts-node prisma/seed.ts",
+    "dev": "NODE_ENV=development nodemon --watch \"src/**\" --ext \"ts,json\" --exec \"ts-node src/server.ts\""
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
@@ -32,13 +37,15 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "dotenv-cli": "^6.0.0",
+    "dotenv-expand": "^9.0.0",
     "express": "^4.18.1",
     "express-async-errors": "^3.1.1",
     "helmet": "^5.1.0",
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.19",
-    "pg": "^8.7.3"
+    "pg": "^8.7.3",
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.3.0",
