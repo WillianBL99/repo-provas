@@ -1,4 +1,6 @@
-import "../config/setup.js";
+import { loadEnv } from "../config/envs.js";
+loadEnv();
+
 const ENV = process.env;
 
 const JWT_SECRET = ENV.JWT_SECRET ?? "";

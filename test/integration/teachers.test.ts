@@ -1,9 +1,16 @@
 import userFactory from "../factories/user.factory";
 import teachersFactory from "../factories/teachers.factory";
 import { cleanDb } from "../helpers";
+import { init } from "../../src/app";
+import { disconnectDb } from "../../src/config/database";
 
 beforeEach(async () => {
-  cleanDb();
+  await init();
+  await cleanDb();
+});
+
+afterAll(async () => {
+  await disconnectDb();
 });
 
 describe("Teachers suite", () => {

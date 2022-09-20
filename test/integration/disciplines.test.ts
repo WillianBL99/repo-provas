@@ -1,9 +1,16 @@
+import { init } from "../../src/app";
+import { disconnectDb } from "../../src/config/database";
 import disciplinesFactory from "../factories/disciplines.factory";
 import userFactory from "../factories/user.factory";
 import { cleanDb } from "../helpers";
 
 beforeEach(async () => {
-  cleanDb();
+  await init();
+  await cleanDb();
+});
+
+afterAll(async () => {
+  await disconnectDb();
 });
 
 describe("Disciplines suite", () => {

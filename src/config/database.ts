@@ -1,18 +1,22 @@
-import pkg from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import AppLog from "../events/AppLog.js";
-import "./setup.js";
 
-const { PrismaClient } = pkg;
-const prisma = new PrismaClient();
+export let prisma: PrismaClient;
 
-exec();
-export { prisma };
+export function connectDb() {
+  if (!prisma) {
+    try {
+      prisma = new PrismaClient();
+      AppLog("Service", "Connected to database");
+    } catch (error) {
+      AppLog("Error", "Failed to connect to database");
+    }
+  }
+}
 
-async function exec() {
-  try {
-    await prisma.$connect();
-    AppLog("Server", `Connected to database`);
-  } catch (error) {
-    AppLog("Error", `Internal error while connecting to database | ${error}`);
+export async function disconnectDb() {
+  if (prisma) {
+    await prisma.$disconnect();
+    AppLog("Service", "Disconnected from database");
   }
 }

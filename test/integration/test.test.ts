@@ -1,9 +1,16 @@
+import { init } from "../../src/app";
+import { disconnectDb } from "../../src/config/database";
 import testFactory from "../factories/test.factory";
 import userFactory from "../factories/user.factory";
 import { cleanDb } from "../helpers";
 
 beforeEach(async () => {
+  await init();
   await cleanDb();
+});
+
+afterAll(async () => {
+  await disconnectDb();
 });
 
 describe("Test suite", () => {
