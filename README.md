@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://https://github.com/WillianBL99/repo-provas">
+  <a href="https://github.com/WillianBL99/repo-provas">
     <img src="https://icon-library.com/images/android-file-icon/android-file-icon-4.jpg" alt="readme-logo" width="180" >
   </a>
 
