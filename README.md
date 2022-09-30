@@ -25,10 +25,7 @@ The api follow the REST architecture and was developed using the following techn
 - [<img src="https://img.shields.io/badge/Supertest-2C2D72?style=for-the-badge&logo=supertest&logoColor=white" alt="Supertest" />](https://www.npmjs.com/package/supertest)
 
 ## Summary
-- [:page_facing_up: About](#page_facing_up-about)
-- [:rocket: Technologies used](#rocket-technologies-used)
-- [Summary](#summary)
-- [:cd: Usage](#cd-usage)
+- [:cd: Usage](#usage)
   - [How to run for development](#how-to-run-for-development)
   - [How to run tests for development](#how-to-run-tests-for-development)
   - [How to run for production (Locally)](#how-to-run-for-production-locally)
@@ -40,16 +37,6 @@ The api follow the REST architecture and was developed using the following techn
   - [Disciplines](#disciplines)
   - [Teachers](#teachers)
 - [:page_facing_up: License](#page_facing_up-license)
-  - [MIT License](#mit-license)
-
-- [Available routes in the API](#available-routes-in-the-api)
-  - [Auth](#auth)
-  - [Tests](#tests)
-  - [Categories](#categories)
-  - [Disciplines](#disciplines)
-  - [Teachers](#teachers)
-
-- [License](#license)
   - [MIT License](#mit-license)
 
 
@@ -179,7 +166,7 @@ $ npm run docker:compose:down
 
 ### MIT License
 
-[:outbox_tray:](#----valex-api--)
+[:outbox_tray:](#----repoprovas--)
 
 ---
 Desenvolvido por **Paulo Uilian Barros Lago**😊🧑🏻‍💻
