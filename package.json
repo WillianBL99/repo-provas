@@ -21,7 +21,8 @@
     "docker:start": "NODE_ENV=production dotenv -e .env.docker prisma migrate dev && dotenv -e .env.docker node dist/src/server.js",
     "docker:build": "NODE_ENV=production npx tsc --outDir dist",
     "start": "NODE_ENV=production NODE_TLS_REJECT_UNAUTHORIZED=0 node dist/src/server.js",
-    "build": "NODE_ENV=production npx tsc --outDir dist && prisma migrate deploy && ts-node prisma/seed.ts"
+    "build": "NODE_ENV=production npx tsc --outDir dist && prisma migrate deploy && ts-node prisma/seed.ts",
+    "prepare": "husky install"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
@@ -71,7 +72,8 @@
     "ts-node": "^10.8.2",
     "ts-node-dev": "^2.0.0",
     "tslib": "^2.4.0",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "husky": "^8.0.0"
   },
   "prettier": {}
 }
