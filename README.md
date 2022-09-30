@@ -18,10 +18,40 @@ The api follow the REST architecture and was developed using the following techn
 - [<img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js" />](https://nodejs.org/en/)
 - [<img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express.js" />](https://expressjs.com/)
 - [<img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />](https://www.typescriptlang.org/)
+- [<img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />](https://www.docker.com/)
 - [<img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />](https://www.postgresql.org/)
 - [<img src="https://img.shields.io/badge/Prisma-1B222D?style=for-the-badge&logo=prisma&logoColor=white" alt="Prisma" />](https://www.prisma.io/)
 - [<img src="https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white" alt="Jest" />](https://jestjs.io/)
 - [<img src="https://img.shields.io/badge/Supertest-2C2D72?style=for-the-badge&logo=supertest&logoColor=white" alt="Supertest" />](https://www.npmjs.com/package/supertest)
+
+## Summary
+- [:page_facing_up: About](#page_facing_up-about)
+- [:rocket: Technologies used](#rocket-technologies-used)
+- [Summary](#summary)
+- [:cd: Usage](#cd-usage)
+  - [How to run for development](#how-to-run-for-development)
+  - [How to run tests for development](#how-to-run-tests-for-development)
+  - [How to run for production (Locally)](#how-to-run-for-production-locally)
+  - [How to run for production (Docker)](#how-to-run-for-production-docker)
+- [:twisted_rightwards_arrows: Available routes in the API](#twisted_rightwards_arrows-available-routes-in-the-api)
+  - [Auth](#auth)
+  - [Tests](#tests)
+  - [Categories](#categories)
+  - [Disciplines](#disciplines)
+  - [Teachers](#teachers)
+- [:page_facing_up: License](#page_facing_up-license)
+  - [MIT License](#mit-license)
+
+- [Available routes in the API](#available-routes-in-the-api)
+  - [Auth](#auth)
+  - [Tests](#tests)
+  - [Categories](#categories)
+  - [Disciplines](#disciplines)
+  - [Teachers](#teachers)
+
+- [License](#license)
+  - [MIT License](#mit-license)
+
 
 ## :cd: Usage
 ### How to run for development
@@ -36,10 +66,10 @@ $ cd repo-provas
 $ npm install
 ```
 
-2. Create a PostgreSQL database with whatever name you want.
+2. Create and configure the `.env.development` file based on the `.env.example` file.
 
-3. Create and configure the `.env.development` file based on the `.env.example` file.
-
+3. Create a PostgreSQL database with whatever name you want.
+   
 4. Run the migrations to create the database tables.
 
 ```bash
@@ -97,6 +127,20 @@ $ npm run build
 $ npm run start
 ```
 
+### How to run for production (Docker)
+
+1. Run the docker-compose
+
+```bash
+$ npm run docker:compose:up
+```
+
+2. And to stop the docker-compose
+
+```bash
+$ npm run docker:compose:down
+```
+
 ## :twisted_rightwards_arrows: Available routes in the API
 
 ### Auth
@@ -134,7 +178,6 @@ $ npm run start
 ## :page_facing_up: License
 
 ### MIT License
-
 
 [:outbox_tray:](#----valex-api--)
 
