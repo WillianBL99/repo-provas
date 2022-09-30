@@ -23,6 +23,35 @@ The api follow the REST architecture and was developed using the following techn
 - [<img src="https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white" alt="Jest" />](https://jestjs.io/)
 - [<img src="https://img.shields.io/badge/Supertest-2C2D72?style=for-the-badge&logo=supertest&logoColor=white" alt="Supertest" />](https://www.npmjs.com/package/supertest)
 
+## Summary
+- [:page_facing_up: About](#page_facing_up-about)
+- [:rocket: Technologies used](#rocket-technologies-used)
+- [Summary](#summary)
+- [:cd: Usage](#cd-usage)
+  - [How to run for development](#how-to-run-for-development)
+  - [How to run tests for development](#how-to-run-tests-for-development)
+  - [How to run for production (Locally)](#how-to-run-for-production-locally)
+  - [How to run for production (Docker)](#how-to-run-for-production-docker)
+- [:twisted_rightwards_arrows: Available routes in the API](#twisted_rightwards_arrows-available-routes-in-the-api)
+  - [Auth](#auth)
+  - [Tests](#tests)
+  - [Categories](#categories)
+  - [Disciplines](#disciplines)
+  - [Teachers](#teachers)
+- [:page_facing_up: License](#page_facing_up-license)
+  - [MIT License](#mit-license)
+
+- [Available routes in the API](#available-routes-in-the-api)
+  - [Auth](#auth)
+  - [Tests](#tests)
+  - [Categories](#categories)
+  - [Disciplines](#disciplines)
+  - [Teachers](#teachers)
+
+- [License](#license)
+  - [MIT License](#mit-license)
+
+
 ## :cd: Usage
 ### How to run for development
 
@@ -97,6 +126,20 @@ $ npm run build
 $ npm run start
 ```
 
+### How to run for production (Docker)
+
+1. Run the docker-compose
+
+```bash
+$ npm run docker:compose:up
+```
+
+2. And to stop the docker-compose
+
+```bash
+$ npm run docker:compose:down
+```
+
 ## :twisted_rightwards_arrows: Available routes in the API
 
 ### Auth
@@ -134,7 +177,6 @@ $ npm run start
 ## :page_facing_up: License
 
 ### MIT License
-
 
 [:outbox_tray:](#----valex-api--)
 
