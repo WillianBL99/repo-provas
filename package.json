@@ -20,6 +20,8 @@
     "prod:prisma:seed": "npm run prod:load-envs npm run prisma:seed",
     "docker:start": "NODE_ENV=production dotenv -e .env.docker prisma migrate dev && dotenv -e .env.docker node dist/src/server.js",
     "docker:build": "NODE_ENV=production npx tsc --outDir dist",
+    "docker:compose:up": "docker-compose up --build",
+    "docker:compose:down": "docker-compose down",
     "start": "NODE_ENV=production NODE_TLS_REJECT_UNAUTHORIZED=0 node dist/src/server.js",
     "build": "NODE_ENV=production npx tsc --outDir dist && prisma migrate deploy && ts-node prisma/seed.ts",
     "prepare": "husky install"
