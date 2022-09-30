@@ -36,10 +36,10 @@ $ cd repo-provas
 $ npm install
 ```
 
-2. Create a PostgreSQL database with whatever name you want.
+2. Create and configure the `.env.development` file based on the `.env.example` file.
 
-3. Create and configure the `.env.development` file based on the `.env.example` file.
-
+3. Create a PostgreSQL database with whatever name you want.
+   
 4. Run the migrations to create the database tables.
 
 ```bash

@@ -2,10 +2,9 @@
   "name": "repo-provas",
   "version": "1.0.0",
   "description": "RepoProvas is an API developed in node.js, using TypeScript. It is intended to manage exams that are given in an academic environment.",
-  "main": "dist/server.js",
+  "main": "dist/src/server.js",
   "type": "module",
   "scripts": {
-    "prepare": "husky install",
     "prisma:migrate": "prisma migrate deploy",
     "prisma:seed": "npx prisma db seed",
     "test:load-envs": "dotenv -e .env.test",
@@ -19,6 +18,8 @@
     "prod:load-envs": "dotenv -e .env.production",
     "prod:prisma:migrate": "npm run prod:load-envs npm run prisma:migrate",
     "prod:prisma:seed": "npm run prod:load-envs npm run prisma:seed",
+    "docker:start": "NODE_ENV=production dotenv -e .env.docker prisma migrate dev && dotenv -e .env.docker node dist/src/server.js",
+    "docker:build": "NODE_ENV=production npx tsc --outDir dist",
     "start": "NODE_ENV=production NODE_TLS_REJECT_UNAUTHORIZED=0 node dist/src/server.js",
     "build": "NODE_ENV=production npx tsc --outDir dist && prisma migrate deploy && ts-node prisma/seed.ts"
   },
@@ -37,7 +38,7 @@
   },
   "homepage": "https://github.com/WillianBL99/repo-provas#readme",
   "dependencies": {
-    "@prisma/client": "^4.0.0",
+    "@prisma/client": "^4.1.1",
     "bcrypt": "^5.0.1",
     "chalk": "^5.0.1",
     "cors": "^2.8.5",
@@ -50,12 +51,12 @@
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.19",
+    "prisma": "^4.1.1",
     "pg": "^8.7.3",
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.3.0",
-    "@types/axios": "^0.14.0",
     "@types/bcrypt": "^5.0.0",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
@@ -64,9 +65,7 @@
     "@types/pg": "^8.6.5",
     "@types/supertest": "^2.0.12",
     "axios": "^0.27.2",
-    "husky": "^8.0.1",
     "jest": "^28.1.3",
-    "prisma": "^4.0.0",
     "supertest": "^6.2.4",
     "ts-jest": "^28.0.7",
     "ts-node": "^10.8.2",

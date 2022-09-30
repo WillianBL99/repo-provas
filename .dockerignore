@@ -1,0 +1,6 @@
+README.md
+node_modules
+test
+thunder*.json
+jest.config.js
+.env
